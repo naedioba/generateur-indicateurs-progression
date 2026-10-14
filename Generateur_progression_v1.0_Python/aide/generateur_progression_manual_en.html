@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>User manual — Progress Indicator Generator</title>
+<style>
+:root{--navy:#0b1a3a;--navy2:#13264f;--cyan:#2fc6d6;--ink:#1c2433;--muted:#5b6780;--line:#dde3ee;--bg:#f6f8fc;--card:#fff;--code:#eef2f8}
+@media (prefers-color-scheme:dark){:root{--ink:#e8eef8;--muted:#8fa3c7;--line:#24365e;--bg:#0b1a3a;--card:#0f2147;--code:#13264f}}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:16px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif}
+header{background:var(--navy);color:#e8eef8;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+header .t{font-size:22px;font-weight:600}header .s{color:#8fa3c7;font-size:14px}
+header a.lang{color:var(--navy);background:var(--cyan);padding:6px 14px;border-radius:4px;text-decoration:none;font-weight:600;font-size:14px}
+.wrap{display:flex;max-width:1180px;margin:0 auto;gap:32px;padding:24px 28px 60px}
+nav{flex:0 0 250px;position:sticky;top:16px;align-self:flex-start;max-height:calc(100vh - 32px);overflow:auto;font-size:14px}
+nav .h{font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-size:12px;margin-bottom:8px}
+nav a{display:block;color:var(--ink);text-decoration:none;padding:5px 10px;border-left:3px solid transparent}
+nav a:hover{border-left-color:var(--cyan);background:var(--card)}
+main{flex:1;min-width:0;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:8px 36px 36px}
+h1{display:none}h2{margin-top:36px;padding-top:8px;border-top:1px solid var(--line);font-size:22px}
+h2:first-of-type{border-top:0}
+code{background:var(--code);padding:1px 6px;border-radius:3px;font:14px Consolas,"Cascadia Mono",monospace}
+table{border-collapse:collapse;width:100%;margin:14px 0;font-size:15px;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--code)}strong{color:inherit}
+li{margin:4px 0}a{color:#1a8fa0}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:0 28px 30px}
+@media (max-width:820px){.wrap{flex-direction:column}nav{position:static;max-height:none;flex:none}main{padding:8px 18px 24px}}
+@media print{nav,header a.lang{display:none}main{border:0}}
+</style></head><body>
+<header><div><div class="t">User manual — Progress Indicator Generator</div><div class="s">Creating progress circles and progress bars</div></div>
+<a class="lang" href="generateur_progression_manuel_fr.html">Français</a></header>
+<div class="wrap"><nav><div class="h">Contents</div><a href="#overview">Overview</a><a href="#installation">Installation</a><a href="#getting-to-know-the-interface">Getting to know the interface</a><a href="#creating-a-series-step-by-step">Creating a series step by step</a><a href="#shape-settings">Shape settings</a><a href="#colors-and-text">Colors and text</a><a href="#presets">Presets</a><a href="#file-names">File names</a><a href="#troubleshooting">Troubleshooting</a><a href="#copyright-licenses-and-contacts">Copyright, licenses and contacts</a></nav><main><h1>User manual — Progress Indicator Generator</h1>
+<h2 id="overview">Overview</h2>
+<p>Progress Indicator Generator creates, from scratch, a complete series of 101 progress images, from 0 to 100%. You choose the type, shape, colors, text and file names; the program draws all the images at once.</p>
+<table>
+<thead><tr><th>Type</th><th>What you set</th></tr></thead>
+<tbody>
+<tr><td>Circle</td><td>Size, ring thickness, margin, rounded arc ends, fill direction</td></tr>
+<tr><td>Bar</td><td>Width, height, corner radius, border thickness, margin, rounded fill end</td></tr>
+</tbody>
+</table>
+<p>Images are drawn four times larger and then reduced, so edges are smooth, with no jagged steps. If needed, the series it produces can then be recolored with the <strong>Progress Indicator Recolorer</strong> tool, and put back into a display with the appropriate update tools (note: for TFT displays, use <strong>TJC TFT Tool</strong>, available here: <a href="https://github.com/naedioba/TJC_TFT_Tools_Ender-3_V3_SE/releases/tag/v1.0.0_on_publish">TJC TFT Tool v1.0.0</a>).</p>
+<p>The interface is available in English and French.</p>
+<h2 id="installation">Installation</h2>
+<p>Two versions exist: a ready-to-use Windows program (.exe), and a Python version for other systems or for changing the code.</p>
+<h3 id="windows-version-exe-recommended">Windows version (.exe) — recommended</h3>
+<p>No installation: unzip the archive and double-click <code>Generateur progression.exe</code>. Python is not required; the manual and fonts are built into the program. The archive also contains the license files <code>LICENSE</code> (software) and <code>LICENCE_DejaVu.txt</code> (fonts).</p>
+<p>On first launch, Windows SmartScreen may show "Windows protected your PC", because the program is not digitally signed. Click <strong>More info</strong>, then <strong>Run anyway</strong>.</p>
+<h3 id="python-version">Python version</h3>
+<ol>
+<li>Install Python 3 from python.org, ticking <strong>Add python.exe to PATH</strong>.</li>
+<li>Install the required library with <code>python -m pip install pillow</code>.</li>
+<li>Put all the program files in one folder, then run <code>python generateur_progression.py</code> or double-click that file.</li>
+</ol>
+<table>
+<thead><tr><th>File</th><th>Purpose</th></tr></thead>
+<tbody>
+<tr><td><code>generateur_progression.py</code></td><td>The program to run (interface)</td></tr>
+<tr><td><code>moteur_generateur.py</code></td><td>Drawing of circles and bars</td></tr>
+<tr><td><code>polices\</code></td><td>The DejaVu fonts used for text, and their license</td></tr>
+<tr><td><code>aide\</code></td><td>This manual, in French and English</td></tr>
+<tr><td><code>icone.ico</code></td><td>Window icon (optional)</td></tr>
+<tr><td><code>LICENSE</code></td><td>The text of the GNU General Public License version 3</td></tr>
+</tbody>
+</table>
+<h2 id="getting-to-know-the-interface">Getting to know the interface</h2>
+<table>
+<thead><tr><th>Area</th><th>Contents</th></tr></thead>
+<tbody>
+<tr><td>Top</td><td><strong>Circle | Bar</strong> type selector, <strong>Help (F1)</strong> button and <strong>FR | EN</strong> language selector</td></tr>
+<tr><td>Shape</td><td>Dimensions and shape options for the chosen type</td></tr>
+<tr><td>Text</td><td>Text display, size and font</td></tr>
+<tr><td>Presets</td><td>Ready-made settings, and buttons to open or save your own presets</td></tr>
+<tr><td>Colors</td><td>One row per part of the image, with a swatch, a color code and a Choose… button; gradient and transparent background options</td></tr>
+<tr><td>Files</td><td>Output folder, prefix, first number, suffix and format, with an example of the names produced</td></tr>
+<tr><td>Preview</td><td>The image at the percentage chosen with the slider; it updates after every change</td></tr>
+<tr><td>Bottom</td><td>Progress bar, status message and the green <strong>Generate the 101 images</strong> button</td></tr>
+</tbody>
+</table>
+<p>Each type keeps its own settings: you can switch from Circle to Bar and back without losing anything. The <strong>Help</strong> button (or the <strong>F1</strong> key) opens this manual; the chosen language is remembered.</p>
+<h2 id="creating-a-series-step-by-step">Creating a series step by step</h2>
+<ol>
+<li>Choose the type: <strong>Circle</strong> or <strong>Bar</strong>.</li>
+<li>Start from a preset (Presets section) or from the settings shown.</li>
+<li>Set the shape, colors and text. Move the preview slider to check several percentages: 0%, 1%, 50%, 99% and 100%.</li>
+<li>Under <strong>Files</strong>, choose the output folder and set the names. The "Names" line shows the first and last file.</li>
+<li>Click <strong>Generate the 101 images</strong>. If files with the same names already exist, the program asks for confirmation before replacing them.</li>
+</ol>
+<h2 id="shape-settings">Shape settings</h2>
+<h3 id="circle">Circle</h3>
+<table>
+<thead><tr><th>Setting</th><th>Effect</th></tr></thead>
+<tbody>
+<tr><td>Size (px)</td><td>Width and height of the square image</td></tr>
+<tr><td>Ring thickness (px)</td><td>Width of the ring, arc included</td></tr>
+<tr><td>Outer margin (px)</td><td>Space between the image edge and the ring</td></tr>
+<tr><td>Rounded arc ends</td><td>Ends the arc with round caps, as on the Creality display</td></tr>
+<tr><td>Fill direction</td><td>The arc always starts at the top, then runs clockwise or counterclockwise</td></tr>
+</tbody>
+</table>
+<h3 id="bar">Bar</h3>
+<table>
+<thead><tr><th>Setting</th><th>Effect</th></tr></thead>
+<tbody>
+<tr><td>Width, Height (px)</td><td>Image dimensions</td></tr>
+<tr><td>Corner radius (px)</td><td>0 for square corners; half the height for a "pill" shape</td></tr>
+<tr><td>Border thickness (px)</td><td>0 for a bar without a border</td></tr>
+<tr><td>Outer margin (px)</td><td>Space between the image edge and the bar</td></tr>
+<tr><td>Rounded fill end</td><td>Ends the fill with a round cap instead of a straight edge</td></tr>
+</tbody>
+</table>
+<p>Pixel settings accept decimals (for example <code>4.5</code>), except size, width and height. An impossible value is reported in the status message, and the preview waits for a valid value.</p>
+<h2 id="colors-and-text">Colors and text</h2>
+<p>For each part, click the swatch or <strong>Choose…</strong>, or type a code such as <code>#00FF00</code>.</p>
+<ul>
+<li><strong>Gradient</strong>: the arc (circle) or fill (bar) goes from the first color at the top to the second at the bottom.</li>
+<li><strong>Transparent background</strong>: the background is not painted. Only PNG keeps transparency; in JPG or BMP, the background is painted with the Background color.</li>
+<li><strong>Text</strong>: "Percentage" writes for example <code>42%</code> in the center; "% sign only" writes only <code>%</code>; "No text" writes nothing.</li>
+<li><strong>Font</strong>: four DejaVu fonts are included. "Other…" lets you pick a <code>.ttf</code> or <code>.otf</code> font file from your computer, for example in <code>C:\Windows\Fonts</code>.</li>
+</ul>
+<h2 id="presets">Presets</h2>
+<table>
+<thead><tr><th>Button</th><th>Effect</th></tr></thead>
+<tbody>
+<tr><td>Creality preset (92 × 92)</td><td>Circle close to the Ender-3 V3 SE display: blue gradient, track <code>#101C20</code>, text <code>#FFC64A</code>, background <code>#000808</code>. Names become <code>2527_92x92.png</code> to <code>2627_92x92.png</code></td></tr>
+<tr><td>Bar preset (252 × 24)</td><td>Dark red bar with a white border and rounded corners, numbered 0 to 100</td></tr>
+<tr><td>Green / beige</td><td>Green arc or fill <code>#00FF00</code>, beige rest <code>#E8D6B0</code></td></tr>
+<tr><td>Open… / Save…</td><td>Saves all your settings (type, shape, colors, text, names) to a <code>.json</code> file, to reuse them later</td></tr>
+</tbody>
+</table>
+<p>The Creality preset is a close reproduction, not an exact copy: the original font is unknown, and the text is written with DejaVu Sans. For images strictly identical to the originals, keep the images extracted from the display and recolor them.</p>
+<h2 id="file-names">File names</h2>
+<p>Each image is named <code>prefix + number + suffix . format</code>. The first number matches 0%, and it goes up by 1 until 100%.</p>
+<table>
+<thead><tr><th>Prefix</th><th>First number</th><th>Suffix</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>(empty)</td><td>0</td><td>(empty)</td><td><code>0.png</code> … <code>100.png</code></td></tr>
+<tr><td>(empty)</td><td>2527</td><td><code>_92x92</code></td><td><code>2527_92x92.png</code> … <code>2627_92x92.png</code></td></tr>
+<tr><td><code>bar_</code></td><td>0</td><td>(empty)</td><td><code>bar_0.png</code> … <code>bar_100.png</code></td></tr>
+</tbody>
+</table>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<table>
+<thead><tr><th>Message or symptom</th><th>Cause</th><th>Solution</th></tr></thead>
+<tbody>
+<tr><td>"Windows protected your PC"</td><td>The program is not digitally signed</td><td>More info, then Run anyway</td></tr>
+<tr><td>The antivirus blocks or deletes the .exe</td><td>Common false positive for programs packaged with PyInstaller</td><td>Allow the file in your antivirus, or use the Python version</td></tr>
+<tr><td>"Invalid value: …"</td><td>A field holds an impossible value (text, negative number, badly written color)</td><td>Fix the field shown</td></tr>
+<tr><td>The text overflows the ring or bar</td><td>Text size too large for the shape</td><td>Reduce the text size</td></tr>
+<tr><td>The text appears in a plain, tiny font</td><td>Font not found (Python version without the <code>polices</code> folder)</td><td>Put the <code>polices</code> folder back next to the program</td></tr>
+<tr><td>The transparent background is lost</td><td>JPG or BMP format chosen</td><td>Choose the PNG format</td></tr>
+<tr><td>"ModuleNotFoundError"</td><td>Library or engine file missing (Python version)</td><td>Run <code>python -m pip install pillow</code> and keep <code>moteur_generateur.py</code> next to the program</td></tr>
+</tbody>
+</table>
+<h2 id="copyright-licenses-and-contacts">Copyright, licenses and contacts</h2>
+<p>Copyright © 2026 Mamadou Bâ Neige.</p>
+<p>This program is free software: you can redistribute it and/or modify it under the terms of the <strong>GNU General Public License version 3</strong> (GPLv3), as published by the Free Software Foundation. It is distributed in the hope that it will be useful, but <strong>without any warranty</strong>, without even the implied warranty of merchantability or fitness for a particular purpose. The full license text is in the <code>LICENSE</code> file supplied with the software, and on <a href="https://www.gnu.org/licenses/gpl-3.0.html">gnu.org</a>.</p>
+<p>In practice, you may use, study, copy and modify the software freely. If you distribute a modified version, it must remain under the GPLv3, with its source code, and keep the copyright notice.</p>
+<p>The DejaVu fonts are distributed under their own free license, the Bitstream Vera license (full text in <code>LICENCE_DejaVu.txt</code>, next to the .exe, or in the <code>polices</code> folder of the Python version).</p>
+<table>
+<thead><tr><th>Contact</th><th>Address</th></tr></thead>
+<tbody>
+<tr><td>E-mail</td><td><a href="mailto:mamadou.ba@ugb.edu.sn">mamadou.ba@ugb.edu.sn</a></td></tr>
+<tr><td>Phone</td><td>+221 77 645 14 45</td></tr>
+<tr><td>YouTube</td><td><a href="https://www.youtube.com/@mamadoubapassioninformatique">youtube.com/@mamadoubapassioninformatique</a></td></tr>
+<tr><td>Website</td><td><a href="https://neigeba.com/">neigeba.com</a></td></tr>
+</tbody>
+</table>
+<p>This software is not affiliated with Creality or TJC (Taojingchi).</p></main></div>
+<footer>© 2026 Mamadou Bâ Neige — GNU GPL v3 license · Version 1.0</footer></body></html>
